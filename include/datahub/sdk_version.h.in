@@ -1,0 +1,6 @@
+#ifndef SDK_VERSION_H
+#define SDK_VERSION_H
+
+#cmakedefine SDK_VERSION "@SDK_VERSION@"
+
+#endif

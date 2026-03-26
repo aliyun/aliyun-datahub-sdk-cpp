@@ -1,0 +1,23 @@
+using gcc4.9.2
+
+###### For sdk example ######
+
+build use static lib:
+    g++ example/datahub/example_cpp.cpp -D__USE_XOPEN2K8 -std=c++11 -o example_bin -I./include -L./lib -Bstatic -ldatahub-sdk-static -lcurl -lz -llz4 -lssl -lcrypto -lprotobuf -Bdynamic -lpthread -lrt -ldl -static-libgcc -static-libstdc++
+
+build use shared lib:
+    export LD_LIBRARY_PATH=$(pwd)/lib:$LD_LIBRARY_PATH
+    g++ example/datahub/example_cpp.cpp -o example_bin -I./include -L./lib -ldatahub-sdk
+
+build use c:
+    export LD_LIBRARY_PATH=$(pwd)/lib:$LD_LIBRARY_PATH
+    gcc example/datahub/example_c.c -o example_bin -I ./include/ -L./lib -ldatahub-sdk -std=c99
+
+###### For consume & produce example ######
+
+build use static lib:
+    g++ example/client/example_general_produce.cpp -o example_general_produce_static -I./include -L./lib -ldatahub-client-static -std=c++11 -D__USE_XOPEN2K8 -Wl,-Bstatic -lprotobuf -lcurl -lssl -lcrypto -lz -llz4 -Wl,-Bdynamic -lpthread -lrt -ldl -lz -lpthread -llog4cpp
+
+build use shared lib:
+    export LD_LIBRARY_PATH=$(pwd)/lib:$LD_LIBRARY_PATH
+    g++ example/client/example_general_produce.cpp -o example_general_produce -I./include -L./lib -ldatahub-client -ldatahub-sdk -std=c++11 -D__USE_XOPEN2K8

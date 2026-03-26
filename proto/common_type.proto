@@ -1,0 +1,67 @@
+package aliyun.datahub.proto;
+
+message SimpleRequestPB
+{
+    optional string code_version = 1;
+    optional string data_format_version = 2;
+}
+
+message SimpleResponsePB
+{
+    required uint32 err_code = 1;
+    optional string err_msg = 2 [default = ""];
+}
+
+message StringPair
+{
+    required string key = 1;
+    required string value = 2;
+}
+
+message IntStringPair
+{
+    required int32 key = 1;
+    required string value = 2;
+}
+
+message UIntStringPair
+{
+    required uint32 key = 1;
+    required string value = 2;
+}
+
+message StringIntPair
+{
+    required string key = 1;
+    required int32 value = 2;
+}
+
+message XStreamRole
+{
+    enum Role
+    {
+        ROLE_MASTER = 0;
+        ROLE_BROKER = 1;
+        ROLE_BROKER_SLAVE = 2;
+        ROLE_BROKER_SYNC = 3;
+        ROLE_LOADER = 4;
+        ROLE_RECYCLER = 5;
+        ROLE_DDL_WORKER = 6;
+        ROLE_DDL_AGENT = 7;
+        ROLE_SHIPPER_CONTROLLER = 8;
+        ROLE_SHIPPER_EXECUTOR = 9;
+        ROLE_METER = 10;
+        ROLE_COORDINATOR_MASTER = 11;
+        ROLE_COORDINATOR_OFFSET = 12;
+        ROLE_METASERVICE_MASTER = 13;
+        ROLE_METASERVICE_WORKER = 14;
+        ROLE_UNKNOWN = 15;
+    }
+}
+
+message RunModeInfo
+{
+    required string shard_key = 1;
+    required uint32 mode = 2;
+    optional string address = 3;
+}
